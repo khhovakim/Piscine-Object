@@ -3,49 +3,78 @@
 
 # include "bank.h" 
 
-# include <iostream> // For ostream
-# include <string>   // For string
+// --- Standard Library Includes ---
+# include <cstddef>  // For std::size_t
+# include <iostream> // For std::ostream
+# include <string>   // For std::string
 
+// Definition of the Account structure nested inside Bank
 struct Bank::Account
 {
 private:
+    // --- Friends ---
+
+    // Granting Bank full access to private members
     friend class Bank;
+
+    // Allow printing an account's details via std::ostream
     friend std::ostream& operator<<(std::ostream& os, const Account& acc)
     {
-        os << "Account[" << acc._id << "] "
+        os << "Account["     << acc._id << "] "
            << acc._ownerName << " : "
-           << acc._balance << " units";
+           << acc._balance   << " $";
         return os;
     }
 
 public:
+    // --- Const Getters (no copies allowed) ---
+
+    // Get the account owner's name (read-only reference)
     const std::string& getOwner()   const noexcept { return _ownerName; }
-    std::size_t        getId()      const noexcept { return _id;        }
-    int                getBalance() const noexcept { return _balance;   }
+
+    // Get the unique ID of the account
+    std::size_t        getId()      const noexcept { return _id; }
+
+    // Get the current balance in the account
+    int                getBalance() const noexcept { return _balance; }
+
+public:
+    // --- Destructor ---
+
+    // Updateing static member data
+    ~Account() { _nextId = 0; }
 
 private:
-// only Bank can creante account
-    explicit Account(const std::string& owner, int balance = 0)
-        : _id{ _nextId++ }, _ownerName{ owner }, _balance{ balance }
-    {   }
-    ~Account() = default;
+    // --- Constructor ---
 
+    // Constructor is private: only Bank can create an Account
+    explicit Account(const std::string& owner, int balance = 0)
+        : _balance{ balance }, _id{ _nextId++ }, _ownerName{ owner }
+    { }
+
+    // Disable copy/move operations
     Account(Account&&)                 = delete;
     Account(const Account&)            = delete;
     Account& operator=(Account&&)      = delete;
     Account& operator=(const Account&) = delete;
 
 private:
-    // ---- Static members (class-wide) ----
+    // --- Static Members ---
+
+    // Global counter used to generate unique account IDs
     static std::size_t _nextId;
 
-    // ---- Constant members (must be initialized in constructor) ----
-    const std::size_t _id;
-    const std::string _ownerName;
+private:
+    // --- Instance Data ---
 
-    // ---- Core data ----
+    // Current account balance (modifiable by Bank only)
     int               _balance;
+
+    // Unique ID assigned at creation (never changes)
+    const std::size_t _id;
+
+    // Account owner name (immutable)
+    const std::string _ownerName;
 };
 
-
-#endif // end of __BANK_ACCOUNT_H__
+#endif // __BANK_ACCOUNT_H__
