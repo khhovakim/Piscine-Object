@@ -3,7 +3,7 @@
 A small object-oriented C++ project simulating a simple bank system that manages user accounts, deposits, withdrawals, and loans. The system handles internal bookkeeping and robust error handling via exceptions.
 
 📁 Project Structure
-.
+
 ├── include/
 │   ├── bank.h            # Bank class declaration
 │   ├── bankAccount.h     # Nested Account struct interface
