@@ -1,4 +1,5 @@
 🏦 Bank Management System (C++)
+
 A small object-oriented C++ project simulating a simple bank system that manages user accounts, deposits, withdrawals, and loans. The system handles internal bookkeeping and robust error handling via exceptions.
 
 📁 Project Structure
@@ -14,6 +15,7 @@ A small object-oriented C++ project simulating a simple bank system that manages
 └── README.md             # Project documentation
 
 🚀 Features
+
     -Account creation with automatic unique IDs
     -Read/write access to accounts via operator[]
     -5% fee on all deposits
