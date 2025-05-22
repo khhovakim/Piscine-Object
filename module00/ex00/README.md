@@ -4,15 +4,15 @@ A small object-oriented C++ project simulating a simple bank system that manages
 
 📁 Project Structure
 
-├── include/
-│   ├── bank.h            # Bank class declaration
-│   ├── bankAccount.h     # Nested Account struct interface
-│   └── bankException.h   # Custom exception classes
-├── src/
-│   └── bank.cpp          # Implementation of Bank methods
-│   ├── bankAccount.cpp   # Implementation of Bank::Account methods
-├── main.cpp              # Basic test suite for Bank system
-└── README.md             # Project documentation
+    include/
+        bank.h            # Bank class declaration
+        bankAccount.h     # Nested Account struct interface
+        bankException.h   # Custom exception classes
+    src/
+        bank.cpp          # Implementation of Bank methods
+        bankAccount.cpp   # Implementation of Bank::Account methods
+    main.cpp              # Basic test suite for Bank system
+    README.md             # Project documentation
 
 🚀 Features
 
